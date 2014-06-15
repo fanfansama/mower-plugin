@@ -1,7 +1,7 @@
 mower-plugin
 ============
 
-Bienvenue sur le mower-plugin
+Bienvenue sur le mower-plugin !
 
 ## Pré-Requis
 
@@ -17,8 +17,8 @@ $ mvn clean install
 
 ## Notes
 
-- Ajouter un ou plusieurs fichier (.txt) dans le répertoire src/it/ressources,
-- Les espaces et les sauts de lignes superflux ne sont pas tolérés, 
+- Ajouter ***un ou plusieurs fichiers*** (***.txt***) dans le répertoire ***src/it/resources***,
+- ***Les espaces et les sauts de lignes superflux ne sont pas tolérés, 
 
 ```
 5 5
