@@ -18,7 +18,7 @@ $ mvn clean install
 ## Notes
 
 - Ajouter ***un ou plusieurs fichiers*** (***.txt***) dans le répertoire ***src/it/resources***,
-- ***Les espaces et les sauts de lignes superflux ne sont pas tolérés, 
+- ***Les espaces et les sauts de lignes superflux ne sont pas tolérés***, 
 
 ```
 5 5
