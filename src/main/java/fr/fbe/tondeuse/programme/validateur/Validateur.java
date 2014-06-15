@@ -1,9 +1,10 @@
 package fr.fbe.tondeuse.programme.validateur;
 
-import com.google.common.base.Strings;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static fr.fbe.tondeuse.Strings.isNullOrEmpty;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,7 +32,7 @@ abstract class Validateur<K> {
     protected abstract String getExpressionRegulier();
 
     public K valide(String valeur){
-        if(Strings.isNullOrEmpty(valeur)){
+        if(isNullOrEmpty(valeur)){
             return null;
         }
         else if( valeur.matches(getExpressionRegulier()) ){

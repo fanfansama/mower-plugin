@@ -89,7 +89,7 @@ public class Tondeuse {
             case GAUCHE:
                 return allerGauche();
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Action non prévue");
         }
     }
 

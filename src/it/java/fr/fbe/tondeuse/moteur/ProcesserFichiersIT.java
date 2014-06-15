@@ -47,11 +47,16 @@ public class ProcesserFichiersIT {
                 FileUtils.listFiles(FileUtils.getFile(url.getFile()).getParentFile(), new String[] {"txt"},false);
 
         for (File f :filesb){
-              System.out.println("************" +f.getName() +"*********************");
-              Parseur parseur = new Parseur("/basic.txt");
-              List<Position> result = parseur.traitement();
-            for(Position position : result ){
-               System.out.println(position.toString());
+            System.out.println("************" + f.getName() +"*********************");
+            try{
+                Parseur parseur = new Parseur("/" + f.getName());
+                List<Position> result = parseur.traitement();
+                for(Position position : result ){
+                    System.out.println(position.toString());
+                }
+
+            } catch (Exception ex){
+               System.err.println("++++[" + f.getName() + "] ERREUR DETECTEE (" + ex.getClass().getSimpleName() + ":" + ex.getMessage() + ")++++");
             }
 
         }

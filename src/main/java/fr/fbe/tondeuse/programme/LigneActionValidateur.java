@@ -6,7 +6,8 @@ import fr.fbe.tondeuse.programme.validateur.ActionValidateur;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.google.common.base.Strings.isNullOrEmpty;
+import static fr.fbe.tondeuse.Strings.isNullOrEmpty;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,7 +28,7 @@ public class LigneActionValidateur {
     public List<Action> valide(String chaine){
 
         if(isNullOrEmpty(chaine)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Ligne action non présente");
         }
 
         List<Action> actionList = new ArrayList();
@@ -36,7 +37,7 @@ public class LigneActionValidateur {
             if(a!=null){
                 actionList.add(a);
             } else {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Code action inconnu");
             }
         }
        return actionList;

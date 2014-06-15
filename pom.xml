@@ -7,6 +7,7 @@
     <groupId>fr.fbe.mower</groupId>
     <artifactId>mower-plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <prerequisites>
         <maven>3.0.4</maven>
@@ -35,17 +36,13 @@
     </properties>
 
     <dependencies>
+
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.code.findbugs</groupId>
-                    <artifactId>jsr305</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commmon-io.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -62,7 +59,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mockito</groupId>   <!-- TODO: a trier -->
+            <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
@@ -85,11 +82,6 @@
             <artifactId>fest-assert</artifactId>
             <version>${fest.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commmon-io.version}</version>
         </dependency>
 
     </dependencies>
@@ -121,7 +113,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.5</version>
+                <version>1.9</version>
                 <executions>
                     <execution>
                         <id>add-test-source</id>
@@ -137,7 +129,7 @@
                     </execution>
                     <execution>
                         <id>add-test-resource</id>
-                        <phase>process-resources</phase>
+                        <phase>process-test-resources</phase>
                         <goals>
                             <goal>add-test-resource</goal>
                         </goals>
