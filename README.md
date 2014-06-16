@@ -17,7 +17,7 @@ $ mvn clean install
 
 ## Notes
 
-- Ajouter ***un ou plusieurs fichiers*** (***.txt***) dans le répertoire ***src/test/resources***,
+- Ajouter ***un ou plusieurs fichiers*** (***.txt***) dans le répertoire ***src/it/resources***,
 
 ## Restrictions
 
