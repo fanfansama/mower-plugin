@@ -10,17 +10,18 @@ import com.mower.reader.core.DimensionTerrain;
 import com.mower.geo.core.Position;
 
 /**
- *
+ * User: francoisb.
+ * Date: 13/06/14
+ * Time: 21:13
  */
 public class MowerControllerImpl implements MowerController {
 
     final private DimensionTerrain terrain;
-    private OrientationService roseDesVents;
+    private OrientationService orientation;
 
+    private int posX;
 
-    private int coordonneesX;
-
-    private int coordonneesY;
+    private int posY;
 
     public MowerControllerImpl(final Position pPosition, final DimensionTerrain pTerrain){
 
@@ -30,80 +31,72 @@ public class MowerControllerImpl implements MowerController {
         if(pTerrain == null){
             throw new IllegalArgumentException("DimensionTerrain Missing");
         }
-        coordonneesX = pPosition.getX();
-        coordonneesY = pPosition.getY();
-        roseDesVents = new OrientationServiceImpl(pPosition.getPointCardinal());
+        posX = pPosition.getX();
+        posY = pPosition.getY();
+        orientation = new OrientationServiceImpl(pPosition.getPointCardinal());
         terrain = pTerrain;
 
     }
 
     public PointCardinal getOrientation(){
-        return roseDesVents.getOrientation();
+        return orientation.getOrientation();
     }
 
-    private void avancer() throws OutOfRangeException {
+    private void move() throws OutOfRangeException {
         switch (getOrientation()) {
             case NORD:
-                coordonneesY++;
+                posY++;
                 break;
             case SUD:
-                coordonneesY--;
+                posY--;
                 break;
             case EST:
-                coordonneesX++;
+                posX++;
                 break;
             case OUEST:
-                coordonneesX--;
+                posX--;
                 break;
         }
 
-        if(coordonneesX < 0){
-            throw new OutOfRangeException();
+        if(posX < 0){
+            throw new OutOfRangeException("Out of Range should not x<0");
         }
-        if(coordonneesY < 0){
-            throw new OutOfRangeException();
+        if(posY < 0){
+            throw new OutOfRangeException("Out of Range should not y<0");
         }
-        if(terrain.getX() < coordonneesX){
-            throw new OutOfRangeException();
+        if(terrain.getX() < posX){
+            throw new OutOfRangeException("Out of Range should not x>" + terrain.getX());
         }
-        if(terrain.getY() < coordonneesY){
-            throw new OutOfRangeException();
+        if(terrain.getY() < posY){
+            throw new OutOfRangeException("Out of Range should not y>" + terrain.getY());
         }
-    }
-
-    private PointCardinal allerDroite(){
-        return roseDesVents.allerDroite();
-    }
-
-    private PointCardinal allerGauche(){
-        return roseDesVents.allerGauche();
     }
 
     public PointCardinal actionner(Action action) throws OutOfRangeException, IllegalArgumentException{
         switch (action){
-            case AVANCER:
+            case move:
                 avancer();
                 return getOrientation();
             case DROITE:
-                return allerDroite();
+                return orientation.turnRight();
             case GAUCHE:
-                return allerGauche();
+                return orientation.turnLeft();
             default:
-                throw new IllegalArgumentException("Action non prévue");
+                throw new IllegalArgumentException("Unexpected Action");
         }
     }
 
     public String toString(){
         StringBuilder buf = new StringBuilder();
-        buf.append(coordonneesX);
+        buf.append(posX);
         buf.append(" ");
-        buf.append(coordonneesY);
+        buf.append(posY);
         buf.append(" ");
         buf.append(getOrientation().getLibelle());
         return buf.toString();
     }
 
     public Position getPosition() {
-        return new Position(coordonneesX,coordonneesY, getOrientation());
+        return new Position(posX,posY, getOrientation());
     }
 }

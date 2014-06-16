@@ -8,4 +8,9 @@ package com.mower.exception;
  * To change this template use File | Settings | File Templates.
  */
 public class OutOfRangeException extends Exception {
+
+	public OutOfRangeException(String errorMessage) {
+		super(errorMessage);
+	}
+
 }

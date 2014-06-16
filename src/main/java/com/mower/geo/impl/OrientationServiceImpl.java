@@ -7,11 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Created with IntelliJ IDEA.
- * User: fanfan
+ * User: francoisb.
  * Date: 13/06/14
  * Time: 21:13
- * To change this template use File | Settings | File Templates.
  */
 @Getter
 @Setter
@@ -34,12 +32,12 @@ public class OrientationServiceImpl implements OrientationService {
         return listeChainee == null ? null : listeChainee.getPointCardinal();
     }
 
-    public PointCardinal allerDroite(){
+    public PointCardinal turnRight(){
         listeChainee = listeChainee.getSensHoraire();
         return listeChainee.getPointCardinal();
     }
 
-    public PointCardinal allerGauche(){
+    public PointCardinal turnLeft(){
         listeChainee = listeChainee.getSensAnteHoraire();
         return listeChainee.getPointCardinal();
     }
