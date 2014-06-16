@@ -1,9 +1,10 @@
 package com.mower.engine;
 
 import com.mower.exception.OutOfRangeException;
-import com.mower.geo.core.PointCardinal;
-import com.mower.reader.Parseur;
+import com.mower.geo.core.Compass;
+import com.mower.reader.Parser;
 import com.mower.geo.core.Position;
+import com.mower.reader.impl.ParserImpl;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -18,14 +19,14 @@ import static org.fest.assertions.Assertions.assertThat;
  */
 public class IntegrationFichier {
 
-    private Position expectedBasic = new Position(1,5, PointCardinal.NORD);
-    private Position expectedBasic1 = new Position(1,3, PointCardinal.NORD);
-    private Position expectedBasic2 = new Position(5,1, PointCardinal.EST);
+    private Position expectedBasic = new Position(1,5, Compass.NORD);
+    private Position expectedBasic1 = new Position(1,3, Compass.NORD);
+    private Position expectedBasic2 = new Position(5,1, Compass.EST);
 
     @Test
     public void fichierDeRefence() throws IOException, OutOfRangeException {
-        Parseur parseur = new Parseur("/basic.txt");
-        List result = parseur.traitement();
+        Parser parser = new ParserImpl("/src/it/resources/basic.txt");
+        List result = parser.traitement();
         assertThat(result).isNotNull().isNotEmpty().hasSize(3)
                 .containsExactly(expectedBasic, expectedBasic1, expectedBasic2);
     }

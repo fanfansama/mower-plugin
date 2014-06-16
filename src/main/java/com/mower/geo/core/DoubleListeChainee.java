@@ -14,19 +14,19 @@ import lombok.Setter;
 @Setter
 public class DoubleListeChainee {
 
-    PointCardinal pointCardinal;
+    Compass compass;
 
     DoubleListeChainee sensHoraire;
     DoubleListeChainee sensAnteHoraire;
 
 
-    public DoubleListeChainee(PointCardinal cardinal){
-        pointCardinal = cardinal;
+    public DoubleListeChainee(Compass cardinal){
+        compass = cardinal;
         sensHoraire = this;
         sensAnteHoraire = this;
     }
 
-    public DoubleListeChainee ajouterDansLeSensHoraire(PointCardinal cardinal){
+    public DoubleListeChainee ajouterDansLeSensHoraire(Compass cardinal){
         DoubleListeChainee chaine = new DoubleListeChainee(cardinal);
 
         chaine.setSensHoraire(this.getSensHoraire());

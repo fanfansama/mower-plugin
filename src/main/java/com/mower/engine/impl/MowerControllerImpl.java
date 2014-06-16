@@ -3,8 +3,8 @@ package com.mower.engine.impl;
 import com.mower.engine.MowerController;
 import com.mower.exception.OutOfRangeException;
 import com.mower.geo.OrientationService;
+import com.mower.geo.core.Compass;
 import com.mower.geo.impl.OrientationServiceImpl;
-import com.mower.geo.core.PointCardinal;
 import com.mower.reader.core.Action;
 import com.mower.reader.core.DimensionTerrain;
 import com.mower.geo.core.Position;
@@ -33,12 +33,12 @@ public class MowerControllerImpl implements MowerController {
         }
         posX = pPosition.getX();
         posY = pPosition.getY();
-        orientation = new OrientationServiceImpl(pPosition.getPointCardinal());
+        orientation = new OrientationServiceImpl(pPosition.getCompass());
         terrain = pTerrain;
 
     }
 
-    public PointCardinal getOrientation(){
+    public Compass getOrientation(){
         return orientation.getOrientation();
     }
 
@@ -72,10 +72,10 @@ public class MowerControllerImpl implements MowerController {
         }
     }
 
-    public PointCardinal actionner(Action action) throws OutOfRangeException, IllegalArgumentException{
+    public Compass actionner(Action action) throws OutOfRangeException, IllegalArgumentException{
         switch (action){
-            case move:
-                avancer();
+            case AVANCER:
+                move();
                 return getOrientation();
             case DROITE:
                 return orientation.turnRight();
@@ -92,7 +92,7 @@ public class MowerControllerImpl implements MowerController {
         buf.append(" ");
         buf.append(posY);
         buf.append(" ");
-        buf.append(getOrientation().getLibelle());
+        buf.append(getOrientation().getCode());
         return buf.toString();
     }
 

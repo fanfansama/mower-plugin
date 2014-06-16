@@ -1,7 +1,7 @@
 package com.mower.engine;
 
 import com.mower.exception.OutOfRangeException;
-import com.mower.geo.core.PointCardinal;
+import com.mower.geo.core.Compass;
 import com.mower.reader.core.Action;
 import com.mower.geo.core.Position;
 
@@ -14,7 +14,7 @@ import com.mower.geo.core.Position;
  */
 public interface MowerController {
 
-    PointCardinal actionner(Action action) throws OutOfRangeException, IllegalArgumentException;
+    Compass actionner(Action action) throws OutOfRangeException, IllegalArgumentException;
 
     Position getPosition();
 }

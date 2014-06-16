@@ -1,65 +1,63 @@
 package com.mower.geo;
 
-import com.mower.geo.core.PointCardinal;
+import com.mower.geo.core.Compass;
 import com.mower.geo.impl.OrientationServiceImpl;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
 /**
- * Created with IntelliJ IDEA.
  * User: fanfan
  * Date: 13/06/14
  * Time: 22:21
- * To change this template use File | Settings | File Templates.
  */
 public class OrientationServiceTest {
 
     @Test
     public void initialisation() throws Exception {
 
-        assertThat(new OrientationServiceImpl(PointCardinal.EST).getOrientation()).isEqualTo(PointCardinal.EST);
-        assertThat(new OrientationServiceImpl(PointCardinal.SUD).getOrientation()).isEqualTo(PointCardinal.SUD);
-        assertThat(new OrientationServiceImpl(PointCardinal.OUEST).getOrientation()).isEqualTo(PointCardinal.OUEST);
-        assertThat(new OrientationServiceImpl(PointCardinal.NORD).getOrientation()).isEqualTo(PointCardinal.NORD);
+        assertThat(new OrientationServiceImpl(Compass.EST).getOrientation()).isEqualTo(Compass.EST);
+        assertThat(new OrientationServiceImpl(Compass.SUD).getOrientation()).isEqualTo(Compass.SUD);
+        assertThat(new OrientationServiceImpl(Compass.OUEST).getOrientation()).isEqualTo(Compass.OUEST);
+        assertThat(new OrientationServiceImpl(Compass.NORD).getOrientation()).isEqualTo(Compass.NORD);
 
     }
 
     @Test
     public void tournerADroite() throws Exception {
 
-        OrientationService roseDesVents = new OrientationServiceImpl(PointCardinal.EST);
+        OrientationService orientation = new OrientationServiceImpl(Compass.EST);
 
-        assertThat(roseDesVents.allerDroite()).isEqualTo(PointCardinal.SUD);
-        assertThat(roseDesVents.getOrientation()).isEqualTo(PointCardinal.SUD);
-        assertThat(roseDesVents.allerDroite()).isEqualTo(PointCardinal.OUEST);
-        assertThat(roseDesVents.getOrientation()).isEqualTo(PointCardinal.OUEST);
-        assertThat(roseDesVents.allerDroite()).isEqualTo(PointCardinal.NORD);
-        assertThat(roseDesVents.getOrientation()).isEqualTo(PointCardinal.NORD);
-        assertThat(roseDesVents.allerDroite()).isEqualTo(PointCardinal.EST);
-        assertThat(roseDesVents.getOrientation()).isEqualTo(PointCardinal.EST);
+        assertThat(orientation.turnRight()).isEqualTo(Compass.SUD);
+        assertThat(orientation.getOrientation()).isEqualTo(Compass.SUD);
+        assertThat(orientation.turnRight()).isEqualTo(Compass.OUEST);
+        assertThat(orientation.getOrientation()).isEqualTo(Compass.OUEST);
+        assertThat(orientation.turnRight()).isEqualTo(Compass.NORD);
+        assertThat(orientation.getOrientation()).isEqualTo(Compass.NORD);
+        assertThat(orientation.turnRight()).isEqualTo(Compass.EST);
+        assertThat(orientation.getOrientation()).isEqualTo(Compass.EST);
     }
 
     @Test
     public void tournerAGauche() throws Exception {
 
-        OrientationService roseDesVents = new OrientationServiceImpl(PointCardinal.SUD);
+        OrientationService orientation = new OrientationServiceImpl(Compass.SUD);
 
-        assertThat(roseDesVents.allerGauche()).isEqualTo(PointCardinal.EST);
-        assertThat(roseDesVents.allerGauche()).isEqualTo(PointCardinal.NORD);
-        assertThat(roseDesVents.allerGauche()).isEqualTo(PointCardinal.OUEST);
-        assertThat(roseDesVents.allerGauche()).isEqualTo(PointCardinal.SUD);
+        assertThat(orientation.turnLeft()).isEqualTo(Compass.EST);
+        assertThat(orientation.turnLeft()).isEqualTo(Compass.NORD);
+        assertThat(orientation.turnLeft()).isEqualTo(Compass.OUEST);
+        assertThat(orientation.turnLeft()).isEqualTo(Compass.SUD);
     }
 
     @Test
     public void tournerADrouteEtAGauche() throws Exception {
 
-        OrientationService roseDesVents = new OrientationServiceImpl(PointCardinal.NORD);
+        OrientationService orientation = new OrientationServiceImpl(Compass.NORD);
 
-        assertThat(roseDesVents.allerGauche()).isEqualTo(PointCardinal.OUEST);
-        assertThat(roseDesVents.allerGauche()).isEqualTo(PointCardinal.SUD);
-        assertThat(roseDesVents.allerDroite()).isEqualTo(PointCardinal.OUEST);
-        assertThat(roseDesVents.allerDroite()).isEqualTo(PointCardinal.NORD);
+        assertThat(orientation.turnLeft()).isEqualTo(Compass.OUEST);
+        assertThat(orientation.turnLeft()).isEqualTo(Compass.SUD);
+        assertThat(orientation.turnLeft()).isEqualTo(Compass.EST);
+        assertThat(orientation.turnLeft()).isEqualTo(Compass.NORD);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.mower.geo;
 
-import com.mower.geo.core.PointCardinal;
+import com.mower.geo.core.Compass;
 
 /**
  * User: francoisb.
@@ -9,9 +9,9 @@ import com.mower.geo.core.PointCardinal;
  */
 public interface OrientationService {
 
-    PointCardinal getOrientation();
+    Compass getOrientation();
 
-    PointCardinal turnRight();
+    Compass turnRight();
 
-    PointCardinal turnLeft();
+    Compass turnLeft();
 }

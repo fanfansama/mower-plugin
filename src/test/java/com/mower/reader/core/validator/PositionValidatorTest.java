@@ -1,6 +1,6 @@
 package com.mower.reader.core.validator;
 
-import com.mower.geo.core.PointCardinal;
+import com.mower.geo.core.Compass;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -28,7 +28,7 @@ public class PositionValidatorTest {
         assertThat(validator.valide("12 3S")).isNull();
         assertThat(validator.valide("12 34 N").getX()).isEqualTo(12);     // reflexion
         assertThat(validator.valide("12 34 N").getY()).isEqualTo(34);     // reflexion
-        assertThat(validator.valide("12 34 N").getPointCardinal()).isEqualTo(PointCardinal.NORD);     // reflexion
+        assertThat(validator.valide("12 34 N").getCompass()).isEqualTo(Compass.NORD);     // reflexion
     }
 
 }

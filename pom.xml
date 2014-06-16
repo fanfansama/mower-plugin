@@ -123,7 +123,7 @@
                     </execution>
                     <execution>
                         <id>add-test-resource</id>
-                        <phase>process-test-resources</phase>
+                        <phase>process-resources</phase>
                         <goals>
                             <goal>add-test-resource</goal>
                         </goals>

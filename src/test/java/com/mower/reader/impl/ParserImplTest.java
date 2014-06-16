@@ -1,9 +1,9 @@
-package com.mower.reader;
+package com.mower.reader.impl;
 
 import com.mower.exception.OutOfRangeException;
-import com.mower.geo.core.PointCardinal;
+import com.mower.geo.core.Compass;
 import com.mower.geo.core.Position;
-import com.mower.reader.Parseur;
+import com.mower.reader.Parser;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,31 +30,30 @@ import org.powermock.modules.junit4.PowerMockRunner;
  * Date: 15/06/14 08:04
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest( Parseur.class )
-public class ParseurTest {
+@PrepareForTest( ParserImpl.class )
+public class ParserImplTest {
 
     @Mock
     private BufferedReader bufferedReader;
     @Mock
-    InputStreamReader inputStreamReader ;
-  //  @Mock
-  //  Class<Parseur> mockedClass;
+    private InputStreamReader inputStreamReader ;
+
     @Mock
-    InputStream inputStream;
+    private InputStream inputStream;
 
-    private Parseur parseur;
+    private ParserImpl parseur;
 
-    private Position expected1 = new Position(1,3, PointCardinal.NORD);
-    private Position expected2 = new Position(5,1, PointCardinal.EST);
+    private Position expected1 = new Position(1,3, Compass.NORD);
+    private Position expected2 = new Position(5,1, Compass.EST);
     private static final String EOF = null;
 
     @Before
     public void setup() throws Exception {
 
-        stub(Parseur.class.getMethod("getInputStream",String.class)).toReturn(inputStream);
+        stub(ParserImpl.class.getMethod("getInputStream",String.class)).toReturn(inputStream);
         whenNew(InputStreamReader.class).withArguments(inputStream, "UTF-8").thenReturn(inputStreamReader);
         whenNew(BufferedReader.class).withArguments(inputStreamReader).thenReturn( bufferedReader );
-        parseur = spy(new Parseur("test"));
+        parseur = spy(new ParserImpl("test"));
 
     }
 

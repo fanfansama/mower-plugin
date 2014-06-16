@@ -3,7 +3,7 @@ package com.mower.engine;
 import com.mower.engine.impl.MowerControllerImpl;
 import com.mower.exception.OutOfRangeException;
 import com.mower.geo.OrientationService;
-import com.mower.geo.core.PointCardinal;
+import com.mower.geo.core.Compass;
 import com.mower.reader.core.Action;
 import com.mower.reader.core.DimensionTerrain;
 import com.mower.geo.core.Position;
@@ -20,125 +20,123 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
- * Created with IntelliJ IDEA.
  * User: fanfan
  * Date: 13/06/14
  * Time: 23:04
- * To change this template use File | Settings | File Templates.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class MowerControllerTest {
 
     private final DimensionTerrain terrain5x5 = new DimensionTerrain(5,5);
     private final DimensionTerrain terrain2x2 = new DimensionTerrain(2,2);
-    private final Position est1x1 = new Position(1,1,PointCardinal.EST);
+    private final Position est1x1 = new Position(1,1, Compass.EST);
 
     @Test
     public void avancerAuNord() throws Exception {
-        Position position = new Position(1,1, PointCardinal.NORD);
-        MowerController mowerControllerImpl = new MowerControllerImpl(position,terrain2x2);
-        mowerControllerImpl.actionner(Action.AVANCER);
-        assertThat(mowerControllerImpl.getPosition().getX()).isEqualTo( 1 );
-        assertThat(mowerControllerImpl.getPosition().getY()).isEqualTo( 2 );
-        assertThat(mowerControllerImpl.getPosition().getPointCardinal()).isEqualTo( PointCardinal.NORD );
+        Position position = new Position(1,1, Compass.NORD);
+        MowerController controller = new MowerControllerImpl(position,terrain2x2);
+        controller.actionner(Action.AVANCER);
+        assertThat(controller.getPosition().getX()).isEqualTo(1);
+        assertThat(controller.getPosition().getY()).isEqualTo(2);
+        assertThat(controller.getPosition().getCompass()).isEqualTo(Compass.NORD);
     }
 
     @Test
     public void avancerAuSud() throws Exception {
-        Position position = new Position(1,1, PointCardinal.SUD);
-        MowerControllerImpl mowerControllerImpl = new MowerControllerImpl(position,terrain2x2);
-        mowerControllerImpl.actionner(Action.AVANCER);
-        assertThat(mowerControllerImpl.getPosition().getX()).isEqualTo( 1 );
-        assertThat(mowerControllerImpl.getPosition().getY()).isEqualTo( 0 );
+        Position position = new Position(1,1, Compass.SUD);
+        MowerControllerImpl controller = new MowerControllerImpl(position,terrain2x2);
+        controller.actionner(Action.AVANCER);
+        assertThat(controller.getPosition().getX()).isEqualTo(1);
+        assertThat(controller.getPosition().getY()).isEqualTo(0);
     }
 
     @Test
     public void avancerAlEst() throws Exception {
-        Position position = new Position(1,1, PointCardinal.EST);
-        MowerControllerImpl mowerControllerImpl = new MowerControllerImpl(position,terrain2x2);
+        Position position = new Position(1,1, Compass.EST);
+        MowerControllerImpl controller = new MowerControllerImpl(position,terrain2x2);
 
-        mowerControllerImpl.actionner(Action.AVANCER);
-        assertThat(mowerControllerImpl.getPosition().getX()).isEqualTo( 2 );
-        assertThat(mowerControllerImpl.getPosition().getY()).isEqualTo( 1 );
+        controller.actionner(Action.AVANCER);
+        assertThat(controller.getPosition().getX()).isEqualTo(2);
+        assertThat(controller.getPosition().getY()).isEqualTo(1);
     }
 
     @Test
     public void avancerAlOuest() throws Exception {
-        Position position = new Position(1,1, PointCardinal.OUEST);
-        MowerControllerImpl mowerControllerImpl = new MowerControllerImpl(position,terrain2x2);
+        Position position = new Position(1,1, Compass.OUEST);
+        MowerControllerImpl controller = new MowerControllerImpl(position,terrain2x2);
 
-        mowerControllerImpl.actionner(Action.AVANCER);
-        assertThat(mowerControllerImpl.getPosition().getX()).isEqualTo( 0 );
-        assertThat(mowerControllerImpl.getPosition().getY()).isEqualTo( 1 );
+        controller.actionner(Action.AVANCER);
+        assertThat(controller.getPosition().getX()).isEqualTo(0);
+        assertThat(controller.getPosition().getY()).isEqualTo(1);
     }
 
     @Test(expected = OutOfRangeException.class)
     public void sortir_sud() throws OutOfRangeException {
-        Position position = new Position(0,0, PointCardinal.SUD);
-        MowerControllerImpl mowerControllerImpl = new MowerControllerImpl(position,terrain2x2);
-        mowerControllerImpl.actionner(Action.AVANCER);
+        Position position = new Position(0,0, Compass.SUD);
+        MowerControllerImpl controller = new MowerControllerImpl(position,terrain2x2);
+        controller.actionner(Action.AVANCER);
 
     }
 
     @Test(expected = OutOfRangeException.class)
     public void sortir_ouest() throws OutOfRangeException {
-        Position position = new Position(0,0, PointCardinal.OUEST);
-        MowerControllerImpl mowerControllerImpl = new MowerControllerImpl(position,terrain2x2);
-        mowerControllerImpl.actionner(Action.AVANCER);
+        Position position = new Position(0,0, Compass.OUEST);
+        MowerControllerImpl controller = new MowerControllerImpl(position,terrain2x2);
+        controller.actionner(Action.AVANCER);
 
     }
 
     @Test(expected = OutOfRangeException.class)
     public void sortir_est() throws OutOfRangeException {
-        Position position = new Position(1,1, PointCardinal.EST);
-        MowerControllerImpl mowerControllerImpl = new MowerControllerImpl(position,terrain2x2);
-        mowerControllerImpl.actionner(Action.AVANCER);
-        assertThat(mowerControllerImpl.getPosition().getX()).isEqualTo(2);
-        assertThat(mowerControllerImpl.getPosition().getY()).isEqualTo(1);
-        mowerControllerImpl.actionner(Action.AVANCER);
+        Position position = new Position(1,1, Compass.EST);
+        MowerControllerImpl controller = new MowerControllerImpl(position,terrain2x2);
+        controller.actionner(Action.AVANCER);
+        assertThat(controller.getPosition().getX()).isEqualTo(2);
+        assertThat(controller.getPosition().getY()).isEqualTo(1);
+        controller.actionner(Action.AVANCER);
 
     }
 
     @Test(expected = OutOfRangeException.class)
     public void sortir_nord() throws OutOfRangeException {
-        Position position = new Position(2,2, PointCardinal.NORD);
-        MowerControllerImpl mowerControllerImpl = new MowerControllerImpl(position,terrain2x2);
-        mowerControllerImpl.actionner(Action.AVANCER);
+        Position position = new Position(2,2, Compass.NORD);
+        MowerControllerImpl controller = new MowerControllerImpl(position,terrain2x2);
+        controller.actionner(Action.AVANCER);
         fail();
     }
 
 
     @Mock
-    private OrientationService roseDesVents ;
+    private OrientationService orentation ;
 
     @InjectMocks
-    private MowerControllerImpl mowerControllerImpl = new MowerControllerImpl(est1x1,terrain5x5);
+    private MowerControllerImpl controller = new MowerControllerImpl(est1x1,terrain5x5);
 
     @Test
-    public void allerDroite() throws OutOfRangeException {
+    public void turnRight() throws OutOfRangeException {
 
-        given(roseDesVents.allerDroite()).willReturn( PointCardinal.EST, PointCardinal.NORD, PointCardinal.OUEST );
+        given(orentation.turnRight()).willReturn( Compass.EST, Compass.NORD, Compass.OUEST );
 
-        assertThat( mowerControllerImpl.actionner(Action.DROITE) ).isEqualTo(PointCardinal.EST);
-        verify(roseDesVents, times(1)).allerDroite();
-        assertThat( mowerControllerImpl.actionner(Action.DROITE) ).isEqualTo(PointCardinal.NORD);
-        verify(roseDesVents, times(2)).allerDroite();
-        assertThat( mowerControllerImpl.actionner(Action.DROITE) ).isEqualTo(PointCardinal.OUEST);
-        verify(roseDesVents, times(3)).allerDroite();
+        assertThat( controller.actionner(Action.DROITE) ).isEqualTo(Compass.EST);
+        verify(orentation, times(1)).turnRight();
+        assertThat( controller.actionner(Action.DROITE) ).isEqualTo(Compass.NORD);
+        verify(orentation, times(2)).turnRight();
+        assertThat( controller.actionner(Action.DROITE) ).isEqualTo(Compass.OUEST);
+        verify(orentation, times(3)).turnRight();
 
     }
 
     @Test
-    public void allerGauche() throws OutOfRangeException {
+    public void turnLeft() throws OutOfRangeException {
 
-        given(roseDesVents.allerGauche()).willReturn( PointCardinal.EST, PointCardinal.NORD, PointCardinal.OUEST );
+        given(orentation.turnLeft()).willReturn( Compass.EST, Compass.NORD, Compass.OUEST );
 
-        assertThat( mowerControllerImpl.actionner(Action.GAUCHE) ).isEqualTo(PointCardinal.EST);
-        verify(roseDesVents, times(1)).allerGauche();
-        assertThat( mowerControllerImpl.actionner(Action.GAUCHE) ).isEqualTo(PointCardinal.NORD);
-        verify(roseDesVents, times(2)).allerGauche();
-        assertThat( mowerControllerImpl.actionner(Action.GAUCHE) ).isEqualTo(PointCardinal.OUEST);
-        verify(roseDesVents, times(3)).allerGauche();
+        assertThat( controller.actionner(Action.GAUCHE) ).isEqualTo(Compass.EST);
+        verify(orentation, times(1)).turnLeft();
+        assertThat( controller.actionner(Action.GAUCHE) ).isEqualTo(Compass.NORD);
+        verify(orentation, times(2)).turnLeft();
+        assertThat( controller.actionner(Action.GAUCHE) ).isEqualTo(Compass.OUEST);
+        verify(orentation, times(3)).turnLeft();
 
     }
 

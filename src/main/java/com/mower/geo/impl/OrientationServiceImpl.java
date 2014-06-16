@@ -1,8 +1,8 @@
 package com.mower.geo.impl;
 
 import com.mower.geo.OrientationService;
+import com.mower.geo.core.Compass;
 import com.mower.geo.core.DoubleListeChainee;
-import com.mower.geo.core.PointCardinal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,28 +17,28 @@ public class OrientationServiceImpl implements OrientationService {
 
     private DoubleListeChainee listeChainee;
 
-    public OrientationServiceImpl(PointCardinal direction){
-        listeChainee = new DoubleListeChainee(PointCardinal.NORD)
-                .ajouterDansLeSensHoraire(PointCardinal.EST)
-                .ajouterDansLeSensHoraire(PointCardinal.SUD)
-                .ajouterDansLeSensHoraire(PointCardinal.OUEST);
+    public OrientationServiceImpl(Compass direction){
+        listeChainee = new DoubleListeChainee(Compass.NORD)
+                .ajouterDansLeSensHoraire(Compass.EST)
+                .ajouterDansLeSensHoraire(Compass.SUD)
+                .ajouterDansLeSensHoraire(Compass.OUEST);
 
-        while ( !direction.equals(listeChainee.getPointCardinal())  ){
+        while ( !direction.equals(listeChainee.getCompass())  ){
             listeChainee = listeChainee.getSensHoraire();
         }
     }
 
-    public PointCardinal getOrientation(){
-        return listeChainee == null ? null : listeChainee.getPointCardinal();
+    public Compass getOrientation(){
+        return listeChainee == null ? null : listeChainee.getCompass();
     }
 
-    public PointCardinal turnRight(){
+    public Compass turnRight(){
         listeChainee = listeChainee.getSensHoraire();
-        return listeChainee.getPointCardinal();
+        return listeChainee.getCompass();
     }
 
-    public PointCardinal turnLeft(){
+    public Compass turnLeft(){
         listeChainee = listeChainee.getSensAnteHoraire();
-        return listeChainee.getPointCardinal();
+        return listeChainee.getCompass();
     }
 }

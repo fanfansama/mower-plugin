@@ -1,8 +1,9 @@
-package com.mower.reader;
+package com.mower.reader.impl;
 
 import com.mower.exception.OutOfRangeException;
 import com.mower.engine.impl.MowerControllerImpl;
 import com.mower.geo.core.Position;
+import com.mower.reader.Parser;
 import com.mower.reader.core.Action;
 import com.mower.reader.core.DimensionTerrain;
 import com.mower.reader.core.validator.ActionLineValidator;
@@ -22,14 +23,14 @@ import java.util.List;
  * User: francois b.
  * Date: 15/06/14 06:48
  */
-public class Parseur {
+public class ParserImpl implements Parser {
 
     private DimensionTerrainValidator terrainValidateur = new DimensionTerrainValidator();
     private PositionValidator positionValidateur = new PositionValidator();
     private ActionLineValidator actionLineValidator = new ActionLineValidator();
     private BufferedReader bufferedReader;
 
-    public Parseur(String pathFichier) throws FileNotFoundException, UnsupportedEncodingException {
+    public ParserImpl(String pathFichier) throws FileNotFoundException, UnsupportedEncodingException {
         InputStream is = getInputStream(pathFichier);
         bufferedReader = new BufferedReader(new InputStreamReader(is,"UTF-8"));
     }

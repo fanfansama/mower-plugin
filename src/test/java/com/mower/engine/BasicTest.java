@@ -2,7 +2,7 @@ package com.mower.engine;
 
 import com.mower.engine.impl.MowerControllerImpl;
 import com.mower.exception.OutOfRangeException;
-import com.mower.geo.core.PointCardinal;
+import com.mower.geo.core.Compass;
 import com.mower.reader.core.Action;
 import com.mower.reader.core.DimensionTerrain;
 import com.mower.geo.core.Position;
@@ -27,7 +27,7 @@ public class BasicTest {
     @Test
     public void cas1() throws OutOfRangeException {
         DimensionTerrain terrain = new DimensionTerrain(5,5);
-        Position position = new Position(1,2,PointCardinal.NORD);
+        Position position = new Position(1,2, Compass.NORD);
         MowerController mower = new MowerControllerImpl(position,terrain);
         mower.actionner(Action.GAUCHE);
         mower.actionner(Action.AVANCER);
@@ -42,7 +42,7 @@ public class BasicTest {
         Position result = mower.getPosition();
         assertThat(result.getX()).isEqualTo(1);
         assertThat(result.getY()).isEqualTo(3);
-        assertThat(result.getPointCardinal()).isEqualTo(PointCardinal.NORD);
+        assertThat(result.getCompass()).isEqualTo(Compass.NORD);
 
     }
 
@@ -54,7 +54,7 @@ public class BasicTest {
     @Test
     public void cas2() throws OutOfRangeException {
         DimensionTerrain terrain = new DimensionTerrain(5,5);
-        Position position = new Position(3,3,PointCardinal.EST);
+        Position position = new Position(3,3, Compass.EST);
         MowerController mower = new MowerControllerImpl(position ,terrain);
 
         mower.actionner(Action.AVANCER);
@@ -71,7 +71,7 @@ public class BasicTest {
         Position result = mower.getPosition();
         assertThat(result.getX()).isEqualTo(5);
         assertThat(result.getY()).isEqualTo(1);
-        assertThat(result.getPointCardinal()).isEqualTo(PointCardinal.EST);
+        assertThat(result.getCompass()).isEqualTo(Compass.EST);
     }
 
 }

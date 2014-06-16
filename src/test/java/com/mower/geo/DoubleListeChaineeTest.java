@@ -1,7 +1,7 @@
 package com.mower.geo;
 
+import com.mower.geo.core.Compass;
 import com.mower.geo.core.DoubleListeChainee;
-import com.mower.geo.core.PointCardinal;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -18,7 +18,7 @@ public class DoubleListeChaineeTest {
     @Test
     public void oneElementGettersNotNull() throws Exception {
 
-        DoubleListeChainee listeChainee = new DoubleListeChainee(PointCardinal.NORD);
+        DoubleListeChainee listeChainee = new DoubleListeChainee(Compass.NORD);
         assertThat(listeChainee.getSensAnteHoraire()).isNotNull().isEqualTo(listeChainee);
         assertThat(listeChainee.getSensHoraire()).isNotNull().isEqualTo(listeChainee);
 
@@ -27,8 +27,8 @@ public class DoubleListeChaineeTest {
     @Test
     public void twoElements(){
 
-        DoubleListeChainee nord = new DoubleListeChainee(PointCardinal.NORD);
-        DoubleListeChainee sud = nord.ajouterDansLeSensHoraire(PointCardinal.SUD);
+        DoubleListeChainee nord = new DoubleListeChainee(Compass.NORD);
+        DoubleListeChainee sud = nord.ajouterDansLeSensHoraire(Compass.SUD);
 
         assertThat(nord.getSensAnteHoraire()).isNotNull().isEqualTo(sud);
         assertThat(nord.getSensHoraire()).isNotNull().isEqualTo(sud);
@@ -41,9 +41,9 @@ public class DoubleListeChaineeTest {
     @Test
     public void treeElements(){
 
-        DoubleListeChainee nord = new DoubleListeChainee(PointCardinal.NORD);
-        DoubleListeChainee est = nord.ajouterDansLeSensHoraire(PointCardinal.EST);
-        DoubleListeChainee sud = est.ajouterDansLeSensHoraire(PointCardinal.SUD);
+        DoubleListeChainee nord = new DoubleListeChainee(Compass.NORD);
+        DoubleListeChainee est = nord.ajouterDansLeSensHoraire(Compass.EST);
+        DoubleListeChainee sud = est.ajouterDansLeSensHoraire(Compass.SUD);
 
         assertThat(nord.getSensAnteHoraire()).isNotNull().isEqualTo(sud);
         assertThat(nord.getSensHoraire()).isNotNull().isEqualTo(est);

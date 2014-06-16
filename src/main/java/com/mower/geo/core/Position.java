@@ -1,16 +1,13 @@
 package com.mower.geo.core;
 
-import com.mower.geo.core.PointCardinal;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Created with IntelliJ IDEA.
  * User: fanfan
  * Date: 14/06/14
  * Time: 11:52
- * To change this template use File | Settings | File Templates.
  */
 @Getter
 @Setter
@@ -19,12 +16,12 @@ import lombok.Setter;
 public class Position {
     private int x;
     private int y;
-    private PointCardinal pointCardinal;
+    private Compass compass;
 
-    public Position(int pX, int pY, PointCardinal pPointCardinal) {
+    public Position(int pX, int pY, Compass pCompass) {
         x=pX;
         y=pY;
-        pointCardinal = pPointCardinal;
+        compass = pCompass;
     }
 
     public String toString(){
@@ -33,7 +30,7 @@ public class Position {
         buf.append(" ");
         buf.append(getY());
         buf.append(" ");
-        buf.append(getPointCardinal().getLibelle());
+        buf.append(this.getCompass().getCode());
         return buf.toString();
     }
 }
