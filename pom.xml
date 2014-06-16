@@ -14,11 +14,9 @@
     </prerequisites>
 
     <properties>
-        <java.version>1.7</java.version>
 
         <lombok.version>1.12.6</lombok.version>
-        <guava.version>16.0</guava.version>
-        <commmon-io.version>2.1</commmon-io.version>
+
         <!-- test -->
         <surefire-plugin.version>2.11</surefire-plugin.version>
         <junit.version>4.11</junit.version>
@@ -29,19 +27,15 @@
         <!-- Logging -->
 
         <!-- quality code -->
-        <pmd.version>3.0.1</pmd.version>
+        <pmd.version>3.1</pmd.version>
         <findbugs.version>2.5.3</findbugs.version>
 
+        <!-- project -->
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commmon-io.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -170,12 +164,15 @@
 
     </build>
 
+    <!-- PMD ne supporte pas JDK8
     <profiles>
         <profile>
             <id>codequality</id>
             <build>
                 <plugins>
-                    <plugin>
+
+
+                   <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-pmd-plugin</artifactId>
                         <version>${pmd.version}</version>
@@ -206,7 +203,6 @@
                             <threshold>Default</threshold>
                             <xmlOutput>true</xmlOutput>
                             <failOnError>true</failOnError>
-                          <!--  <excludeFilterFile>${project.basedir}/src/main/conf/findbugs-exclude.xml</excludeFilterFile>   -->
                         </configuration>
                         <executions>
                             <execution>
@@ -217,7 +213,7 @@
                             </execution>
                         </executions>
                     </plugin>
-              <!--      <plugin>
+                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
                         <version>2.12.1</version>
@@ -236,10 +232,10 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>  -->
+                    </plugin>
                 </plugins>
             </build>
         </profile>
-    </profiles>
+    </profiles>  -->
 
 </project>

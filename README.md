@@ -5,7 +5,7 @@ Bienvenue sur le mower-plugin !
 
 ## Pré-Requis
 
-- JDK 7
+- JDK 8
 - Maven 3+ 
 
 
