@@ -1,7 +1,7 @@
 package com.mower.reader.core.validator;
 
 
-import com.mower.reader.core.Action;
+import com.mower.reader.core.enums.Action;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,10 +14,10 @@ public class ActionValidator extends Validator<Action> {
 
     @Override
     protected Action checkValidation() {
-        String chaine = matcher.group(1);
+        String string = matcher.group(1);
 
         for(Action c: Action.values()){
-            if(c.getLibelle().equals(chaine)){
+            if(c.getCode().equals(string)){
                 return c;
             }
         }
@@ -28,9 +28,9 @@ public class ActionValidator extends Validator<Action> {
     @Override
     protected String getRegExp() {
         return "^(["
-                + Action.AVANCER.getLibelle()
-                + Action.DROITE.getLibelle()
-                + Action.GAUCHE.getLibelle()
+                + Action.AVANCER.getCode()
+                + Action.DROITE.getCode()
+                + Action.GAUCHE.getCode()
                 +"])?$";
     }
 }

@@ -12,6 +12,6 @@ import java.util.List;
  */
 public interface Parser {
 
-    List<Position> traitement() throws OutOfRangeException, IOException;
+    List<Position> process() throws OutOfRangeException, IOException;
 
 }

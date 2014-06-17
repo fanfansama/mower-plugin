@@ -3,7 +3,6 @@ package com.mower.reader.core.validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /**
  * User: fanfan
  * Date: 14/06/14
@@ -18,10 +17,20 @@ abstract class Validator<K> {
 
     protected abstract String getRegExp();
 
-    public K valide(String value){
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public K validate(String value){
         return value == null ? null : match(value.trim());
     }
 
+    /**
+     *
+     * @param valeur
+     * @return
+     */
     private K match(String valeur) {
         if( valeur.matches(getRegExp()) ){
             pattern = Pattern.compile(getRegExp());

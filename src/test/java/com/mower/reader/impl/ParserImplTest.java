@@ -1,9 +1,8 @@
 package com.mower.reader.impl;
 
 import com.mower.exception.OutOfRangeException;
-import com.mower.geo.core.Compass;
 import com.mower.geo.core.Position;
-import com.mower.reader.Parser;
+import com.mower.geo.core.enums.Compass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -69,7 +68,7 @@ public class ParserImplTest {
      @Test
     public void casA() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1 2 N","GAGAGAGAA",EOF);
-        List result = parseur.traitement();
+        List result = parseur.process();
 
         assertThat(result).isNotNull().isNotEmpty().hasSize(1).containsExactly(expected1);
     }
@@ -86,7 +85,7 @@ public class ParserImplTest {
     @Test
     public void casB() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","3 3 E","AADAADADDA",EOF);
-        List result = parseur.traitement();
+        List result = parseur.process();
 
         assertThat(result).isNotNull().isNotEmpty().hasSize(1).containsExactly(expected2);
     }
@@ -106,7 +105,7 @@ public class ParserImplTest {
     public void casC() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1 2 N","GAGAGAGAA","3 3 E","AADAADADDA",EOF);
 
-        List result = parseur.traitement();
+        List result = parseur.process();
         assertThat(result).isNotNull().isNotEmpty().hasSize(2).containsExactly(expected1, expected2);
 
     }
@@ -115,7 +114,7 @@ public class ParserImplTest {
     public void casD() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("","5 5","1 2 N","GAGAGAGAA","3 3 E","AADAADADDA",EOF);
 
-        parseur.traitement();
+        parseur.process();
 
     }
 
@@ -123,7 +122,7 @@ public class ParserImplTest {
     public void casE() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1  N","GAGAGAGAA","3 3 E","AADAADADDA",EOF);
 
-        parseur.traitement();
+        parseur.process();
 
     }
 
@@ -131,7 +130,7 @@ public class ParserImplTest {
     public void casF() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1 2 N","GAGAG AGAA","3 3 E","AADAADADDA",EOF);
 
-        parseur.traitement();
+        parseur.process();
 
     }
 
@@ -139,7 +138,7 @@ public class ParserImplTest {
     public void casG() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1 2 N","GAGAGAGAA","3 3 E",EOF);
 
-        parseur.traitement();
+        parseur.process();
 
     }
 
@@ -147,7 +146,7 @@ public class ParserImplTest {
     public void casH() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1 2 N","GAGAGAGAA","",EOF);
 
-        parseur.traitement();
+        parseur.process();
 
     }
 }

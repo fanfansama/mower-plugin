@@ -1,4 +1,4 @@
-package com.mower.geo.core;
+package com.mower.reader.core.enums;
 
 import lombok.Getter;
 
@@ -8,17 +8,16 @@ import lombok.Getter;
  * Time: 21:10
  */
 @Getter
-public enum Compass {
-    NORD("N"),
-    SUD("S"),
-    EST("E"),
-    OUEST("O");
+public enum Action {
+    AVANCER("A"),
+    GAUCHE("G"),
+    DROITE("D");
 
     @SuppressWarnings("PMD.SingularField")
     private String code;
 
-    Compass(String o){
-        this.code=o;
+    Action(String o){
+        this.code =o;
     }
 
 }

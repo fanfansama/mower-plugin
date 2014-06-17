@@ -1,6 +1,6 @@
 package com.mower.reader.core.validator;
 
-import com.mower.reader.core.Action;
+import com.mower.reader.core.enums.Action;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -18,32 +18,32 @@ public class ActionLineValidatorTest {
 
     @Test
     public void valide() throws Exception {
-        assertThat(validator.valide("ADG"))
+        assertThat(validator.validate("ADG"))
                 .isNotNull().isNotEmpty().hasSize(3).containsExactly(Action.AVANCER, Action.DROITE, Action.GAUCHE);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void actionNonValide_caracteresNonValide() throws Exception {
 
-        assertThat(validator.valide("ADxG")).isNull();
+        assertThat(validator.validate("ADxG")).isNull();
 
     }
     @Test(expected = IllegalArgumentException.class)
     public void actionNonValide_caractereNonValide() throws Exception {
 
-        assertThat(validator.valide("P")).isNull();
+        assertThat(validator.validate("P")).isNull();
 
     }
     @Test(expected = IllegalArgumentException.class)
     public void actionNonValide_null() throws Exception {
 
-        assertThat(validator.valide(null)).isNull();
+        assertThat(validator.validate(null)).isNull();
 
     }
     @Test(expected = IllegalArgumentException.class)
     public void actionNonValide_vide() throws Exception {
 
-        assertThat(validator.valide("")).isNull();
+        assertThat(validator.validate("")).isNull();
 
     }
 }

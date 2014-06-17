@@ -82,7 +82,7 @@ Running com.mower.engine.BasicTest
 Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.092 sec
 Running com.mower.engine.MowerControllerTest
 Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.259 sec
-Running com.mower.geo.DoubleListeChaineeTest
+Running com.mower.geo.LinkListTest
 Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec
 Running com.mower.geo.OrientationServiceTest
 Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
@@ -111,7 +111,7 @@ Tests run: 40, Failures: 0, Errors: 0, Skipped: 0
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
-Running com.mower.engine.ProcesserFichiersIT
+Running com.mower.engine.AllFilesIT
 ********** ba sic.txt **********
 1 5 N
 1 3 N
@@ -127,7 +127,7 @@ Running com.mower.engine.ProcesserFichiersIT
 ++++[basic3.txt] ERREUR DETECTEE (IllegalArgumentException:Action Code unknown)++++
 ********** basic4.txt **********
 ++++[basic4.txt] ERREUR DETECTEE (IllegalArgumentException:Position Missing)++++
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.226 sec - in com.mower.engine.ProcesserFichiersIT
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.226 sec - in com.mower.engine.AllFilesIT
 
 Results :
 

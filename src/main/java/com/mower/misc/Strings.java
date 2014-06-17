@@ -1,4 +1,4 @@
-package com.mower;
+package com.mower.misc;
 
 
 /**
@@ -7,6 +7,10 @@ package com.mower;
  */
 public class Strings {
 
+    /**
+     * @param string
+     * @return
+     */
     public static boolean isNullOrEmpty(String string) {
         return string == null || string.length() == 0;
     }

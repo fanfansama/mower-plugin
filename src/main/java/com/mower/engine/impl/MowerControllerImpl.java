@@ -3,9 +3,9 @@ package com.mower.engine.impl;
 import com.mower.engine.MowerController;
 import com.mower.exception.OutOfRangeException;
 import com.mower.geo.OrientationService;
-import com.mower.geo.core.Compass;
+import com.mower.geo.core.enums.Compass;
 import com.mower.geo.impl.OrientationServiceImpl;
-import com.mower.reader.core.Action;
+import com.mower.reader.core.enums.Action;
 import com.mower.reader.core.DimensionTerrain;
 import com.mower.geo.core.Position;
 
@@ -23,6 +23,11 @@ public class MowerControllerImpl implements MowerController {
 
     private int posY;
 
+    /**
+     *
+     * @param pPosition
+     * @param pTerrain
+     */
     public MowerControllerImpl(final Position pPosition, final DimensionTerrain pTerrain){
 
         if(pPosition == null){
@@ -38,10 +43,18 @@ public class MowerControllerImpl implements MowerController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public Compass getOrientation(){
         return orientation.getOrientation();
     }
 
+    /**
+     *
+     * @throws OutOfRangeException
+     */
     private void move() throws OutOfRangeException {
         switch (getOrientation()) {
             case NORD:
@@ -72,7 +85,14 @@ public class MowerControllerImpl implements MowerController {
         }
     }
 
-    public Compass actionner(Action action) throws OutOfRangeException, IllegalArgumentException{
+    /**
+     *
+     * @param action
+     * @return
+     * @throws OutOfRangeException
+     * @throws IllegalArgumentException
+     */
+    public Compass move(Action action) throws OutOfRangeException, IllegalArgumentException{
         switch (action){
             case AVANCER:
                 move();
@@ -86,6 +106,10 @@ public class MowerControllerImpl implements MowerController {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String toString(){
         StringBuilder buf = new StringBuilder();
         buf.append(posX);
@@ -96,6 +120,10 @@ public class MowerControllerImpl implements MowerController {
         return buf.toString();
     }
 
+    /**
+     *
+     * @return
+     */
     public Position getPosition() {
         return new Position(posX,posY, getOrientation());
     }

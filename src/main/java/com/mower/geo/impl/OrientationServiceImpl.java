@@ -1,8 +1,8 @@
 package com.mower.geo.impl;
 
 import com.mower.geo.OrientationService;
-import com.mower.geo.core.Compass;
-import com.mower.geo.core.DoubleListeChainee;
+import com.mower.geo.core.DoubleCircularlyLinkedList;
+import com.mower.geo.core.enums.Compass;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,30 +15,47 @@ import lombok.Setter;
 @Setter
 public class OrientationServiceImpl implements OrientationService {
 
-    private DoubleListeChainee listeChainee;
+    private DoubleCircularlyLinkedList linkedList;
 
-    public OrientationServiceImpl(Compass direction){
-        listeChainee = new DoubleListeChainee(Compass.NORD)
-                .ajouterDansLeSensHoraire(Compass.EST)
-                .ajouterDansLeSensHoraire(Compass.SUD)
-                .ajouterDansLeSensHoraire(Compass.OUEST);
+    /**
+     *
+     * @param pDirection
+     */
+    public OrientationServiceImpl(Compass pDirection){
+        // build the Compass Well
+        linkedList = new DoubleCircularlyLinkedList(Compass.NORD)
+                .addNext(Compass.EST)
+                .addNext(Compass.SUD)
+                .addNext(Compass.OUEST);
 
-        while ( !direction.equals(listeChainee.getCompass())  ){
-            listeChainee = listeChainee.getSensHoraire();
+        while ( !pDirection.equals(linkedList.getCompass())  ){
+            linkedList = linkedList.getClockwise();
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Compass getOrientation(){
-        return listeChainee == null ? null : listeChainee.getCompass();
+        return linkedList == null ? null : linkedList.getCompass();
     }
 
+    /**
+     *
+     * @return
+     */
     public Compass turnRight(){
-        listeChainee = listeChainee.getSensHoraire();
-        return listeChainee.getCompass();
+        // clockwise could not be null
+        return linkedList.getClockwise().getCompass();
     }
 
+    /**
+     *
+     * @return
+     */
     public Compass turnLeft(){
-        listeChainee = listeChainee.getSensAnteHoraire();
-        return listeChainee.getCompass();
+        // anticlockwise could not be null
+        return linkedList.getAnticlockwise().getCompass();
     }
 }

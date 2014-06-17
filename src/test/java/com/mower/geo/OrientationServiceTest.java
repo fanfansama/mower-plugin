@@ -1,6 +1,6 @@
 package com.mower.geo;
 
-import com.mower.geo.core.Compass;
+import com.mower.geo.core.enums.Compass;
 import com.mower.geo.impl.OrientationServiceImpl;
 import org.junit.Test;
 
@@ -50,14 +50,14 @@ public class OrientationServiceTest {
     }
 
     @Test
-    public void tournerADrouteEtAGauche() throws Exception {
+    public void tournerADroiteEtAGauche() throws Exception {
 
         OrientationService orientation = new OrientationServiceImpl(Compass.NORD);
 
         assertThat(orientation.turnLeft()).isEqualTo(Compass.OUEST);
         assertThat(orientation.turnLeft()).isEqualTo(Compass.SUD);
-        assertThat(orientation.turnLeft()).isEqualTo(Compass.EST);
-        assertThat(orientation.turnLeft()).isEqualTo(Compass.NORD);
+        assertThat(orientation.turnRight()).isEqualTo(Compass.EST);
+        assertThat(orientation.turnRight()).isEqualTo(Compass.NORD);
     }
 
 }

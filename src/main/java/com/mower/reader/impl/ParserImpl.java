@@ -1,10 +1,11 @@
 package com.mower.reader.impl;
 
+import com.mower.engine.MowerController;
 import com.mower.exception.OutOfRangeException;
 import com.mower.engine.impl.MowerControllerImpl;
 import com.mower.geo.core.Position;
 import com.mower.reader.Parser;
-import com.mower.reader.core.Action;
+import com.mower.reader.core.enums.Action;
 import com.mower.reader.core.DimensionTerrain;
 import com.mower.reader.core.validator.ActionLineValidator;
 import com.mower.reader.core.validator.DimensionTerrainValidator;
@@ -25,40 +26,65 @@ import java.util.List;
  */
 public class ParserImpl implements Parser {
 
+    private  static final String UTF_8 = "UTF-8";
+
     private DimensionTerrainValidator terrainValidateur = new DimensionTerrainValidator();
-    private PositionValidator positionValidateur = new PositionValidator();
+    private PositionValidator positionValidator = new PositionValidator();
     private ActionLineValidator actionLineValidator = new ActionLineValidator();
     private BufferedReader bufferedReader;
 
+    /**
+     *
+     * @param pathFichier
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     */
     public ParserImpl(String pathFichier) throws FileNotFoundException, UnsupportedEncodingException {
         InputStream is = getInputStream(pathFichier);
-        bufferedReader = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+        bufferedReader = new BufferedReader(new InputStreamReader(is, UTF_8));
     }
 
-    public InputStream getInputStream(String pathFichier) throws FileNotFoundException {
-        InputStream is = getClass().getResourceAsStream(pathFichier);
+    /**
+     *
+     *
+     * @param filePath
+     * @return
+     * @throws FileNotFoundException
+     */
+
+    public InputStream getInputStream(String filePath) throws FileNotFoundException {
+        InputStream is = getClass().getResourceAsStream(filePath);
         if(is==null){
-            throw new FileNotFoundException(pathFichier);
+            throw new FileNotFoundException(filePath);
         }
         return is;
     }
 
-    public List<Position> traitement() throws OutOfRangeException, IOException {
+    /**
+     *
+     * Read the first line and validate it
+     * then
+     * for each pair of line
+     *
+     * @return
+     * @throws OutOfRangeException
+     * @throws IOException
+     */
+    public List<Position> process() throws OutOfRangeException, IOException {
         List<Position> positionList = new ArrayList<>();
         // lire la premiere ligne
         String ligneDimensionTerrain = bufferedReader.readLine();
-        DimensionTerrain dimensionTerrain = terrainValidateur.valide( ligneDimensionTerrain );
+        DimensionTerrain dimensionTerrain = terrainValidateur.validate(ligneDimensionTerrain);
 
         // pour chaque paire de ligne suivante
         for(String lignePositionTondeuse; (lignePositionTondeuse = bufferedReader.readLine()) != null; ) {
-            Position position = positionValidateur.valide( lignePositionTondeuse );
-            MowerControllerImpl mowerControllerImpl = new MowerControllerImpl(position, dimensionTerrain);
+            Position position = positionValidator.validate(lignePositionTondeuse);
+            MowerController controller = new MowerControllerImpl(position, dimensionTerrain);
 
-            for(Action action : actionLineValidator.valide(bufferedReader.readLine())){
-                mowerControllerImpl.actionner(action);
+            for(Action action : actionLineValidator.validate(bufferedReader.readLine())){
+                controller.move(action);
             }
-            positionList.add( mowerControllerImpl.getPosition() );
-           // System.out.println(mowerControllerImpl.toString());
+            positionList.add(controller.getPosition());
         }
         return positionList;
     }

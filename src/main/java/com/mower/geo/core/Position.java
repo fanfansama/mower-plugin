@@ -1,5 +1,6 @@
 package com.mower.geo.core;
 
+import com.mower.geo.core.enums.Compass;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

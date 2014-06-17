@@ -1,6 +1,5 @@
 package com.mower.engine;
 
-
 import com.mower.reader.Parser;
 import com.mower.geo.core.Position;
 
@@ -17,18 +16,20 @@ import java.util.List;
  * User: francois b.
  * Date: 15/06/14 10:49
  */
-public class ProcesserFichiersIT {
+public class AllFilesIT {
+
+    private static final String TXT = ".txt";
 
     @Test
-    public void lireToutLesFichiers() throws IOException {
+    public void readAllFiles() throws IOException {
 
         Files.list(new File("./src/it/resources").toPath())
-                .filter(p -> p.getFileName().toString().endsWith(".txt"))
+                .filter(p -> p.getFileName().toString().endsWith(TXT))
                 .forEach( filePath -> {
                             try {
                                 System.out.println("********** " + filePath.getFileName().toString() + " **********");
                                 Parser parser = new ParserImpl( "/" + filePath.getFileName().toString() );
-                                List<Position> result = parser.traitement();
+                                List<Position> result = parser.process();
                                 for (Position position : result) {
                                     System.out.println(position.toString());
                                 }
