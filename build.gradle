@@ -1,0 +1,83 @@
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'fr.fbe.mower'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven { url "http://repo.maven.apache.org/maven2" }
+    mavenCentral()
+}
+
+configurations {
+    integTestCompile.extendsFrom runtime
+    integTestRuntime.extendsFrom integTestCompile
+}
+
+dependencies {
+
+    integTestCompile group: 'junit', name: 'junit', version:'4.11'
+    testCompile group: 'junit', name: 'junit', version:'4.11'
+
+    integTestCompile group: 'org.mockito', name: 'mockito-all', version:'1.9.5'
+    testCompile group: 'org.mockito', name: 'mockito-all', version:'1.9.5'
+
+    integTestCompile group: 'org.powermock', name: 'powermock-module-junit4', version:'1.5.5'
+    testCompile group: 'org.powermock', name: 'powermock-module-junit4', version:'1.5.5'
+
+    integTestCompile group: 'org.powermock', name: 'powermock-api-mockito', version:'1.5.5'
+    testCompile group: 'org.powermock', name: 'powermock-api-mockito', version:'1.5.5'
+
+    integTestCompile group: 'org.easytesting', name: 'fest-assert', version:'1.4'
+    testCompile group: 'org.easytesting', name: 'fest-assert', version:'1.4'
+
+    compile group: 'org.projectlombok', name: 'lombok', version:'1.12.6'
+
+    integTestCompile files("$project.buildDir/classes/main")
+
+}
+
+sourceSets {
+    main {
+        java.srcDir 'src/main/java'
+        resources.srcDir 'src/main/resources'
+        }
+
+    integTest {
+        java.srcDir file('src/it/java')
+        resources.srcDir file('src/it/resources')
+    }
+}
+
+
+
+task integTest(type: Test, dependsOn: assemble) {
+    description = "run integration tests"
+    testClassesDir = sourceSets.integTest.output.classesDir
+    classpath = sourceSets.integTest.runtimeClasspath
+
+    beforeTest { descriptor ->
+        logger.lifecycle("Running IT : " + descriptor)
+    }
+    testLogging.showStandardStreams = true
+
+}
+
+check.dependsOn integTest
+
+
+test {
+    testLogging.showStandardStreams = true
+
+    beforeTest { descriptor ->
+        logger.lifecycle("Running TU : " + descriptor)
+    }
+
+    onOutput { descriptor, event ->
+        logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
+    }
+}
