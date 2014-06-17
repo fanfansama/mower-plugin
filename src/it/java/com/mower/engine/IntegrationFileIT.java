@@ -24,8 +24,8 @@ public class IntegrationFileIT {
     private Position expectedBasic2 = new Position(5,1, Compass.EST);
 
     @Test
-    public void fichierDeRefence() throws IOException, OutOfRangeException {
-        Parser parser = new ParserImpl("/src/it/resources/basic.txt");
+    public void mowItNowTestCase() throws IOException, OutOfRangeException {
+        Parser parser = new ParserImpl("/basic.txt");
         List result = parser.process();
         assertThat(result).isNotNull().isNotEmpty().hasSize(3)
                 .containsExactly(expectedBasic, expectedBasic1, expectedBasic2);

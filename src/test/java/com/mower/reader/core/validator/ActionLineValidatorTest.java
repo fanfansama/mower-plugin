@@ -6,11 +6,9 @@ import org.junit.Test;
 import static org.fest.assertions.Assertions.assertThat;
 
 /**
- * Created with IntelliJ IDEA.
  * User: fanfan
  * Date: 14/06/14
  * Time: 21:58
- * To change this template use File | Settings | File Templates.
  */
 public class ActionLineValidatorTest {
 

@@ -4,11 +4,9 @@ package com.mower.reader.core.validator;
 import com.mower.reader.core.enums.Action;
 
 /**
- * Created with IntelliJ IDEA.
  * User: fanfan
  * Date: 14/06/14
  * Time: 21:40
- * To change this template use File | Settings | File Templates.
  */
 public class ActionValidator extends Validator<Action> {
 

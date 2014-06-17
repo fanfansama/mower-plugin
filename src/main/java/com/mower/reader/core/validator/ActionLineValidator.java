@@ -16,7 +16,7 @@ import static com.mower.misc.Strings.isNullOrEmpty;
  */
 public class ActionLineValidator {
 
-    private ActionValidator actionValidator = new ActionValidator();
+    private final ActionValidator actionValidator = new ActionValidator();
 
     /**
      * Validate each Letter Action

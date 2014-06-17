@@ -26,11 +26,12 @@ import java.util.List;
  */
 public class ParserImpl implements Parser {
 
-    private  static final String UTF_8 = "UTF-8";
+    private static final String UTF_8 = "UTF-8";
 
-    private DimensionTerrainValidator terrainValidateur = new DimensionTerrainValidator();
-    private PositionValidator positionValidator = new PositionValidator();
-    private ActionLineValidator actionLineValidator = new ActionLineValidator();
+    private static final DimensionTerrainValidator terrainValidateur = new DimensionTerrainValidator();
+    private static final PositionValidator positionValidator = new PositionValidator();
+    private static final ActionLineValidator actionLineValidator = new ActionLineValidator();
+
     private BufferedReader bufferedReader;
 
     /**

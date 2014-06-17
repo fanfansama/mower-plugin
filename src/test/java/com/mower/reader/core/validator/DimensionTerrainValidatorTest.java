@@ -36,7 +36,7 @@ public class DimensionTerrainValidatorTest {
 
         assertThat(validator.validate("123  465")).isNull();
 
-        DimensionTerrain expected = new DimensionTerrain(13,456);
+        DimensionTerrain expected = new DimensionTerrain(123,465);
         assertThat(validator.validate("123 465 ")).isNotNull().isEqualTo(expected);
         assertThat(validator.validate(" 123 465 ")).isNotNull().isEqualTo(expected);
         assertThat(validator.validate(" 123 465")).isNotNull().isEqualTo(expected);

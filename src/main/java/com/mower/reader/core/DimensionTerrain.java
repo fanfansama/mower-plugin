@@ -5,11 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Created with IntelliJ IDEA.
  * User: fanfan
  * Date: 14/06/14
  * Time: 08:23
- * To change this template use File | Settings | File Templates.
  */
 @Getter
 @Setter

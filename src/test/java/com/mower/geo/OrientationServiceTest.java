@@ -27,7 +27,7 @@ public class OrientationServiceTest {
     public void tournerADroite() throws Exception {
 
         OrientationService orientation = new OrientationServiceImpl(Compass.EST);
-
+        assertThat(orientation.getOrientation()).isEqualTo(Compass.EST);
         assertThat(orientation.turnRight()).isEqualTo(Compass.SUD);
         assertThat(orientation.getOrientation()).isEqualTo(Compass.SUD);
         assertThat(orientation.turnRight()).isEqualTo(Compass.OUEST);
@@ -56,7 +56,7 @@ public class OrientationServiceTest {
 
         assertThat(orientation.turnLeft()).isEqualTo(Compass.OUEST);
         assertThat(orientation.turnLeft()).isEqualTo(Compass.SUD);
-        assertThat(orientation.turnRight()).isEqualTo(Compass.EST);
+        assertThat(orientation.turnRight()).isEqualTo(Compass.OUEST);
         assertThat(orientation.turnRight()).isEqualTo(Compass.NORD);
     }
 

@@ -47,7 +47,8 @@ public class OrientationServiceImpl implements OrientationService {
      */
     public Compass turnRight(){
         // clockwise could not be null
-        return linkedList.getClockwise().getCompass();
+        linkedList = linkedList.getClockwise();
+        return linkedList.getCompass();
     }
 
     /**
@@ -56,6 +57,7 @@ public class OrientationServiceImpl implements OrientationService {
      */
     public Compass turnLeft(){
         // anticlockwise could not be null
-        return linkedList.getAnticlockwise().getCompass();
+        linkedList = linkedList.getAnticlockwise();
+        return linkedList.getCompass();
     }
 }
