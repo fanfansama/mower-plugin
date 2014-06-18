@@ -6,7 +6,7 @@ Bienvenue sur le mower-plugin !
 ## Pré-Requis
 
 - JDK 8
-- Maven 3+ 
+- Maven 3+ ou Gradle 1.12 (utilisation en mode découverte...) 
 
 
 ## Utilisation
@@ -14,6 +14,11 @@ Bienvenue sur le mower-plugin !
 ```java
 $ mvn clean install
 ```
+
+```java
+$ gradle clean check
+```
+
 
 ## Notes
 
@@ -38,6 +43,7 @@ AADAADADDA
 
 ## Sortie
 
+***Maven***
 ```
 /Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/bin/java -Dmaven.home=/Users/fanfan/Applis/java/apache-maven-3.0.4 -Dclassworlds.conf=/Users/fanfan/Applis/java/apache-maven-3.0.4/bin/m2.conf -Didea.launcher.port=7540 "-Didea.launcher.bin.path=/Applications/IntelliJ IDEA 12.app/bin" -Dfile.encoding=UTF-8 -classpath "/Users/fanfan/Applis/java/apache-maven-3.0.4/boot/plexus-classworlds-2.4.jar:/Applications/IntelliJ IDEA 12.app/lib/idea_rt.jar" com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher --fail-fast --strict-checksums install
 [INFO] Scanning for projects...
@@ -153,4 +159,12 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 Process finished with exit code 0
 
 ```
+***Gradle***
+
+
+
+```
+to do
+```
+
 
