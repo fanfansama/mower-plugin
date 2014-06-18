@@ -45,6 +45,7 @@ AADAADADDA
 
 ***Maven***
 ```
+$> mvn clean install
 /Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home/bin/java -Dmaven.home=/Users/fanfan/Applis/java/apache-maven-3.0.4 -Dclassworlds.conf=/Users/fanfan/Applis/java/apache-maven-3.0.4/bin/m2.conf -Didea.launcher.port=7540 "-Didea.launcher.bin.path=/Applications/IntelliJ IDEA 12.app/bin" -Dfile.encoding=UTF-8 -classpath "/Users/fanfan/Applis/java/apache-maven-3.0.4/boot/plexus-classworlds-2.4.jar:/Applications/IntelliJ IDEA 12.app/lib/idea_rt.jar" com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher --fail-fast --strict-checksums install
 [INFO] Scanning for projects...
 [INFO]
@@ -164,7 +165,89 @@ Process finished with exit code 0
 
 
 ```
-to do
+$> gradle clean check
+The Test.testReportDir property has been deprecated and is scheduled to be removed in Gradle 2.0. Please use the Test.getReports().getHtml().getDestination() property instead.
+:clean
+:compileJava
+Note: /home/francois/IdeaProjects/mower/src/main/java/com/mower/reader/core/validator/ActionLineValidator.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+:processResources UP-TO-DATE
+:classes
+:jar
+:assemble
+:compileIntegTestJava
+:processIntegTestResources
+:integTestClasses
+:integTest
+Running TI : test mowItNowTestCase(com.mower.engine.IntegrationFileIT)
+Running TI : test readAllFiles(com.mower.engine.AllFilesIT)
+
+com.mower.engine.AllFilesIT > readAllFiles STANDARD_OUT
+    ********** basic2.txt **********
+    0 0 N
+    0 0 N
+    ********** basic3.txt **********
+    ++++[basic3.txt] ERREUR DETECTEE (IllegalArgumentException:Action Code Unknown)++++
+    ********** ba sic.txt **********
+    1 5 N
+    1 3 N
+    5 1 E
+    ********** basic.txt **********
+    1 5 N
+    1 3 N
+    5 1 E
+    ********** basic4.txt **********
+    ++++[basic4.txt] ERREUR DETECTEE (IllegalArgumentException:Position Missing)++++
+:compileTestJava
+:processTestResources UP-TO-DATE
+:testClasses
+:test
+Running TU : test avancerAlEst(com.mower.engine.MowerControllerTest)
+Running TU : test avancerAuSud(com.mower.engine.MowerControllerTest)
+Running TU : test avancerAuNord(com.mower.engine.MowerControllerTest)
+Running TU : test sortir_ouest(com.mower.engine.MowerControllerTest)
+Running TU : test avancerAlOuest(com.mower.engine.MowerControllerTest)
+Running TU : test turnRight(com.mower.engine.MowerControllerTest)
+Running TU : test sortir_est(com.mower.engine.MowerControllerTest)
+Running TU : test sortir_sud(com.mower.engine.MowerControllerTest)
+Running TU : test turnLeft(com.mower.engine.MowerControllerTest)
+Running TU : test sortir_nord(com.mower.engine.MowerControllerTest)
+Running TU : test cas1(com.mower.engine.BasicTest)
+Running TU : test cas2(com.mower.engine.BasicTest)
+Running TU : test tournerADroiteEtAGauche(com.mower.geo.OrientationServiceTest)
+Running TU : test tournerADroite(com.mower.geo.OrientationServiceTest)
+Running TU : test tournerAGauche(com.mower.geo.OrientationServiceTest)
+Running TU : test initialisation(com.mower.geo.OrientationServiceTest)
+Running TU : test treeElements(com.mower.geo.LinkListTest)
+Running TU : test oneElementGettersNotNull(com.mower.geo.LinkListTest)
+Running TU : test twoElements(com.mower.geo.LinkListTest)
+Running TU : test valide(com.mower.reader.core.validator.ActionValidatorTest)
+Running TU : test valide(com.mower.reader.core.validator.PositionValidatorTest)
+Running TU : test actionNonValide_null(com.mower.reader.core.validator.ActionLineValidatorTest)
+Running TU : test actionNonValide_vide(com.mower.reader.core.validator.ActionLineValidatorTest)
+Running TU : test valide(com.mower.reader.core.validator.ActionLineValidatorTest)
+Running TU : test actionNonValide_caractereNonValide(com.mower.reader.core.validator.ActionLineValidatorTest)
+Running TU : test actionNonValide_caracteresNonValide(com.mower.reader.core.validator.ActionLineValidatorTest)
+Running TU : test estValide(com.mower.reader.core.validator.DimensionTerrainValidatorTest)
+Running TU : test estValide_alphanumerique(com.mower.reader.core.validator.DimensionTerrainValidatorTest)
+Running TU : test estValide_presenceEspaceSupplumentaire(com.mower.reader.core.validator.DimensionTerrainValidatorTest)
+Running TU : test estValide_valeurTropGrande_X(com.mower.reader.core.validator.DimensionTerrainValidatorTest)
+Running TU : test estValide_valeurTropGrande_Y(com.mower.reader.core.validator.DimensionTerrainValidatorTest)
+Running TU : test badformat(com.mower.reader.core.validator.DimensionTerrainValidatorTest)
+Running TU : test casA(com.mower.reader.impl.ParserImplTest)
+Running TU : test casB(com.mower.reader.impl.ParserImplTest)
+Running TU : test casC(com.mower.reader.impl.ParserImplTest)
+Running TU : test casD(com.mower.reader.impl.ParserImplTest)
+Running TU : test casE(com.mower.reader.impl.ParserImplTest)
+Running TU : test casF(com.mower.reader.impl.ParserImplTest)
+Running TU : test casG(com.mower.reader.impl.ParserImplTest)
+Running TU : test casH(com.mower.reader.impl.ParserImplTest)
+:check
+
+BUILD SUCCESSFUL
+
+Total time: 13.259 secs
+
 ```
 
 
