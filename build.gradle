@@ -1,6 +1,7 @@
 
 apply plugin: 'java'
-apply plugin: 'maven'
+//apply plugin: 'maven'
+apply plugin: 'project-report'
 
 group = 'fr.fbe.mower'
 version = '1.0-SNAPSHOT'
@@ -8,9 +9,6 @@ version = '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.12'
-}
 
 repositories {
     maven { url "http://repo.maven.apache.org/maven2" }
@@ -51,6 +49,11 @@ sourceSets {
         resources.srcDir 'src/main/resources'
         }
 
+    test {
+        java.srcDir file('src/test/java')
+        resources.srcDir file('src/test/resources')
+    }
+
     integTest {
         java.srcDir file('src/it/java')
         resources.srcDir file('src/it/resources')
@@ -63,25 +66,36 @@ task integTest(type: Test, dependsOn: assemble) {
     description = "run integration tests"
     testClassesDir = sourceSets.integTest.output.classesDir
     classpath = sourceSets.integTest.runtimeClasspath
-
+    
     beforeTest { descriptor ->
-        logger.lifecycle("Running IT : " + descriptor)
+        logger.lifecycle("Running TI : " + descriptor)
     }
-    testLogging.showStandardStreams = true
 
+testReportDir = file("${project.buildDir}/it-reports")
+    reporting {
+	baseDir "${project.buildDir}/it-reports"
+    }
+   
 }
 
 check.dependsOn integTest
 
 
 test {
-    testLogging.showStandardStreams = true
-
     beforeTest { descriptor ->
         logger.lifecycle("Running TU : " + descriptor)
     }
-
-    onOutput { descriptor, event ->
-        logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
-    }
+    reporting {
+	baseDir "${project.buildDir}/tu-reports"
+    }   
 }
+
+tasks.withType(Test) {
+    testLogging.showStandardStreams = true
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
+
+
