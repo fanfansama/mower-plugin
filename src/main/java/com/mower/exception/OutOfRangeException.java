@@ -6,7 +6,7 @@ package com.mower.exception;
  * Date: 13/06/14
  * Time: 23:10
  */
-public class OutOfRangeException extends Exception {
+public class OutOfRangeException extends RuntimeException {
 
     /**
      *

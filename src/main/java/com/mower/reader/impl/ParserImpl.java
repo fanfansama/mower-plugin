@@ -19,6 +19,11 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Spliterator;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * User: francois b.
@@ -72,12 +77,17 @@ public class ParserImpl implements Parser {
      * @throws IOException
      */
     public List<Position> process() throws OutOfRangeException, IOException {
-        List<Position> positionList = new ArrayList<>();
         // lire la premiere ligne
         String ligneDimensionTerrain = bufferedReader.readLine();
         DimensionTerrain dimensionTerrain = terrainValidateur.validate(ligneDimensionTerrain);
 
-        // pour chaque paire de ligne suivante
+
+       /*
+
+        Code avant l'utilisation de l'API Stream
+
+       // pour chaque paire de ligne suivante
+         List<Position> positionList = new ArrayList<>();
         for(String lignePositionTondeuse; (lignePositionTondeuse = bufferedReader.readLine()) != null; ) {
             Position position = positionValidator.validate(lignePositionTondeuse);
             MowerController controller = new MowerControllerImpl(position, dimensionTerrain);
@@ -86,7 +96,32 @@ public class ParserImpl implements Parser {
                 controller.move(action);
             }
             positionList.add(controller.getPosition());
-        }
+        }  */
+
+        List<Position> positionList = bufferedReader.lines()
+            .map(
+                new Function<String, Position>() {
+                    String previous;
+                    @Override
+                    public Position apply(String s) {
+                        if (previous != null) {
+                            Position position = positionValidator.validate(previous);
+                            MowerController controller = new MowerControllerImpl(position, dimensionTerrain);
+                            for(Action action : actionLineValidator.validate(s)){
+                                controller.move(action);
+                            }
+                            previous = null;
+                            return controller.getPosition();
+                        } else {
+                            previous = s;
+                            return null;
+                        }
+                    }
+                }
+            )
+                .filter(p ->p!=null)
+                .collect(Collectors.toList());
+
         return positionList;
     }
 
