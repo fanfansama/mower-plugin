@@ -82,9 +82,7 @@ public class ParserImpl implements Parser {
         DimensionTerrain dimensionTerrain = terrainValidateur.validate(ligneDimensionTerrain);
 
 
-       /*
-
-        Code avant l'utilisation de l'API Stream
+       // Code avant l'utilisation de l'API Stream
 
        // pour chaque paire de ligne suivante
          List<Position> positionList = new ArrayList<>();
@@ -96,9 +94,10 @@ public class ParserImpl implements Parser {
                 controller.move(action);
             }
             positionList.add(controller.getPosition());
-        }  */
+        }
 
-        List<Position> positionList = bufferedReader.lines()
+        /* en l'absence d'une strategie de test, je retire
+        List<Position> positionListStream = bufferedReader.lines()
             .map(
                 new Function<String, Position>() {
                     String previous;
@@ -120,7 +119,7 @@ public class ParserImpl implements Parser {
                 }
             )
                 .filter(p ->p!=null)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());  */
 
         return positionList;
     }

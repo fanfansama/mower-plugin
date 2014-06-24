@@ -23,7 +23,7 @@ public class BasicTest {
      GAGAGAGAA -> 1 3 N
      */
     @Test
-    public void cas1() throws OutOfRangeException {
+    public void premierJeuDesSpecs() throws OutOfRangeException {
         DimensionTerrain terrain = new DimensionTerrain(5,5);
         Position position = new Position(1,2, Compass.NORD);
         MowerController mower = new MowerControllerImpl(position,terrain);
@@ -50,7 +50,7 @@ public class BasicTest {
      AADAADADDA -> 5 1 E
      */
     @Test
-    public void cas2() throws OutOfRangeException {
+    public void secondJeuDesSpecs() throws OutOfRangeException {
         DimensionTerrain terrain = new DimensionTerrain(5,5);
         Position position = new Position(3,3, Compass.EST);
         MowerController mower = new MowerControllerImpl(position ,terrain);

@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -66,9 +68,8 @@ public class ParserImplTest {
      * @throws IOException
      * @throws OutOfRangeException
      */
-    @Ignore // en attendant de mocker Stream
     @Test
-    public void casA() throws IOException, OutOfRangeException {
+    public void cas_normal() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1 2 N","GAGAGAGAA",EOF);
         List result = parseur.process();
 
@@ -84,9 +85,8 @@ public class ParserImplTest {
      * @throws IOException
      * @throws OutOfRangeException
      */
-    @Ignore // en attendant de mocker Stream
     @Test
-    public void casB() throws IOException, OutOfRangeException {
+    public void second_cas_normal() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","3 3 E","AADAADADDA",EOF);
         List result = parseur.process();
 
@@ -104,9 +104,8 @@ public class ParserImplTest {
      * @throws IOException
      * @throws OutOfRangeException
      */
-    @Ignore // en attendant de mocker Stream
     @Test
-    public void casC() throws IOException, OutOfRangeException {
+    public void deux_cas_normaux() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1 2 N","GAGAGAGAA","3 3 E","AADAADADDA",EOF);
 
         List result = parseur.process();
@@ -115,43 +114,39 @@ public class ParserImplTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void casD() throws IOException, OutOfRangeException {
+    public void ligneTerrainIncomplete() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("","5 5","1 2 N","GAGAGAGAA","3 3 E","AADAADADDA",EOF);
 
         parseur.process();
 
     }
 
-    @Ignore // en attendant de mocker Stream
     @Test(expected = IllegalArgumentException.class)
-    public void casE() throws IOException, OutOfRangeException {
+    public void espaceSupplementaire_coordonnees() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1  N","GAGAGAGAA","3 3 E","AADAADADDA",EOF);
 
         parseur.process();
 
     }
 
-    @Ignore // en attendant de mocker Stream
     @Test(expected = IllegalArgumentException.class)
-    public void casF() throws IOException, OutOfRangeException {
+    public void espaceSupplementaire_actions() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1 2 N","GAGAG AGAA","3 3 E","AADAADADDA",EOF);
 
         parseur.process();
 
     }
 
-    @Ignore // en attendant de mocker Stream
     @Test(expected = IllegalArgumentException.class)
-    public void casG() throws IOException, OutOfRangeException {
+    public void manque_ligne_actions() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1 2 N","GAGAGAGAA","3 3 E",EOF);
 
         parseur.process();
 
     }
 
-    @Ignore // en attendant de mocker Stream
     @Test(expected = IllegalArgumentException.class)
-    public void casH() throws IOException, OutOfRangeException {
+    public void manque_ligne_coordonnees() throws IOException, OutOfRangeException {
         given(bufferedReader.readLine()).willReturn("5 5","1 2 N","GAGAGAGAA","",EOF);
         parseur.process();
     }
