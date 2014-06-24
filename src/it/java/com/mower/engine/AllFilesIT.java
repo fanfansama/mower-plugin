@@ -15,6 +15,8 @@ import java.util.List;
 /**
  * User: francois b.
  * Date: 15/06/14 10:49
+ * Integration Test
+ * <p>Read and process all .txt format files into src/it/resources/</p>
  */
 public class AllFilesIT {
 

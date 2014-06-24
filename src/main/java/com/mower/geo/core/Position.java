@@ -9,6 +9,7 @@ import lombok.Setter;
  * User: fanfan
  * Date: 14/06/14
  * Time: 11:52
+ * Position element : coordinate and orientation
  */
 @Getter
 @Setter
@@ -19,12 +20,22 @@ public class Position {
     private int y;
     private Compass compass;
 
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param pCompass
+     */
     public Position(int pX, int pY, Compass pCompass) {
         x=pX;
         y=pY;
         compass = pCompass;
     }
 
+    /**
+     * toString method
+     * @return
+     */
     public String toString(){
         StringBuilder buf = new StringBuilder();
         buf.append(getX());

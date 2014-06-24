@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
  * User: fanfan
  * Date: 14/06/14
  * Time: 11:54
+ * Generic Validator
  */
 abstract class Validator<K> {
 

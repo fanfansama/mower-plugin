@@ -12,9 +12,21 @@ import com.mower.geo.core.enums.Compass;
  */
 public interface OrientationService {
 
+    /**
+     * getter of Orientation
+     * @return
+     */
     Compass getOrientation();
 
+    /**
+     * turnRight instruction
+     * @return
+     */
     Compass turnRight();
 
+    /**
+     * turnLeft instruction
+     * @return
+     */
     Compass turnLeft();
 }

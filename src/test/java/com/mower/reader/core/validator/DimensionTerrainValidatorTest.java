@@ -9,6 +9,7 @@ import static org.fest.assertions.Assertions.assertThat;
  * User: fanfan
  * Date: 14/06/14
  * Time: 08:00
+ * Test Class of {@link DimensionTerrainValidator}
  */
 public class DimensionTerrainValidatorTest {
 

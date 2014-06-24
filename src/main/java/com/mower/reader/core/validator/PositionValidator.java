@@ -56,6 +56,6 @@ public class PositionValidator extends Validator<Position> {
                 return c;
             }
         }
-        throw new IllegalArgumentException("Point Cardinal unjknown");
+        throw new IllegalArgumentException("Point Cardinal unknown");
     }
 }

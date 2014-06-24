@@ -8,6 +8,7 @@ import static org.fest.assertions.Assertions.assertThat;
  * User: fanfan
  * Date: 14/06/14
  * Time: 21:46
+ * Test Class of {@link ActionValidator}
  */
 public class ActionValidatorTest {
 

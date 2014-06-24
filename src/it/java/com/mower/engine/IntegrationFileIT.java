@@ -16,6 +16,7 @@ import static org.fest.assertions.Assertions.assertThat;
  * User: francois
  * Date: 16/06/14
  * Time: 09:39
+ * Integration test of the basic test case
  */
 public class IntegrationFileIT {
 

@@ -12,7 +12,18 @@ import com.mower.geo.core.Position;
  */
 public interface MowerController {
 
+    /**
+     * main mower method
+     * @param action
+     * @return Compass enum (North, East, South, West)
+     * @throws OutOfRangeException
+     * @throws IllegalArgumentException
+     */
     Compass move(Action action) throws OutOfRangeException, IllegalArgumentException;
 
+    /**
+     * getter of the current position
+     * @return Position
+     */
     Position getPosition();
 }

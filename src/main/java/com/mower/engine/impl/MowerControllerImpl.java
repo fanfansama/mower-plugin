@@ -13,20 +13,20 @@ import com.mower.geo.core.Position;
  * User: francoisb.
  * Date: 13/06/14
  * Time: 21:13
+ * Implementation Class of {@link MowerController}
  */
 public class MowerControllerImpl implements MowerController {
 
     final private DimensionTerrain terrain;
+
     private OrientationService orientation;
-
     private int posX;
-
     private int posY;
 
     /**
-     *
-     * @param pPosition
-     * @param pTerrain
+     * Main Constructor with parameters
+     * @param pPosition : original position
+     * @param pTerrain : Ground Dimension
      */
     public MowerControllerImpl(final Position pPosition, final DimensionTerrain pTerrain){
 
@@ -44,15 +44,14 @@ public class MowerControllerImpl implements MowerController {
     }
 
     /**
-     *
-     * @return
+     * {@see MowerController.getOrientation()}
      */
-    public Compass getOrientation(){
+    private Compass getOrientation(){
         return orientation.getOrientation();
     }
 
     /**
-     *
+     * to move the mower
      * @throws OutOfRangeException
      */
     private void move() throws OutOfRangeException {
@@ -86,11 +85,7 @@ public class MowerControllerImpl implements MowerController {
     }
 
     /**
-     *
-     * @param action
-     * @return
-     * @throws OutOfRangeException
-     * @throws IllegalArgumentException
+     * {@see MowerController.move(action)}
      */
     public Compass move(Action action) throws OutOfRangeException, IllegalArgumentException{
         switch (action){
@@ -107,7 +102,7 @@ public class MowerControllerImpl implements MowerController {
     }
 
     /**
-     *
+     * toString() Method
      * @return
      */
     public String toString(){
@@ -121,8 +116,7 @@ public class MowerControllerImpl implements MowerController {
     }
 
     /**
-     *
-     * @return
+     * {@see MowerController.getOrientation()}
      */
     public Position getPosition() {
         return new Position(posX,posY, getOrientation());

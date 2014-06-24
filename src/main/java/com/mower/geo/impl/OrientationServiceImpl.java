@@ -10,6 +10,7 @@ import lombok.Setter;
  * User: francoisb.
  * Date: 13/06/14
  * Time: 21:13
+ * Implementation of {@link OrientationService}
  */
 @Getter
 @Setter
@@ -34,16 +35,14 @@ public class OrientationServiceImpl implements OrientationService {
     }
 
     /**
-     *
-     * @return
+     * {@see OrientionService.getOrientation()}
      */
     public Compass getOrientation(){
         return linkedList == null ? null : linkedList.getCompass();
     }
 
     /**
-     *
-     * @return
+     * {@see OrientionService.turnRight()}
      */
     public Compass turnRight(){
         // clockwise could not be null
@@ -52,8 +51,7 @@ public class OrientationServiceImpl implements OrientationService {
     }
 
     /**
-     *
-     * @return
+     * {@see OrientionService.turnLeft()}
      */
     public Compass turnLeft(){
         // anticlockwise could not be null

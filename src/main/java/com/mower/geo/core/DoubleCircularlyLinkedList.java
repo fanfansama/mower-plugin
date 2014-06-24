@@ -30,7 +30,7 @@ public class DoubleCircularlyLinkedList {
     }
 
     /**
-     *
+     * put a new Compass element at right
      * @param pCompass
      * @return
      */

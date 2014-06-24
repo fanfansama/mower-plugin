@@ -23,6 +23,7 @@ import static org.mockito.Mockito.verify;
  * User: fanfan
  * Date: 13/06/14
  * Time: 23:04
+ * Test Class of {@link MowerController}
  */
 @RunWith(MockitoJUnitRunner.class)
 public class MowerControllerTest {

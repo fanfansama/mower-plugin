@@ -10,6 +10,7 @@ import static org.fest.assertions.Assertions.assertThat;
  * User: fanfan
  * Date: 13/06/14
  * Time: 22:21
+ * Test Class of {@link OrientationServiceImpl}
  */
 public class OrientationServiceTest {
 

@@ -10,6 +10,7 @@ import static org.fest.assertions.Assertions.assertThat;
  * User: fanfan
  * Date: 13/06/14
  * Time: 21:32
+ * Test Class of {@link DoubleCircularlyLinkedList}
  */
 public class LinkListTest {
 

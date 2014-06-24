@@ -10,6 +10,7 @@ import static org.fest.assertions.Assertions.assertThat;
  * User: fanfan
  * Date: 14/06/14
  * Time: 12:14
+ * Test Class of {@link PositionValidator}
  */
 public class PositionValidatorTest {
 

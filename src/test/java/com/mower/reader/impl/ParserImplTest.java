@@ -30,6 +30,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 /**
  * User: francois b.
  * Date: 15/06/14 08:04
+ * Test Class of {@link ParserImpl}
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest( ParserImpl.class )

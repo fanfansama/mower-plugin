@@ -68,14 +68,12 @@ task integTest(type: Test, dependsOn: assemble) {
     classpath = sourceSets.integTest.runtimeClasspath
     
     beforeTest { descriptor ->
-        logger.lifecycle("Running TI : " + descriptor)
+        logger.lifecycle("Running IT : " + descriptor)
     }
 
-testReportDir = file("${project.buildDir}/it-reports")
-    reporting {
-	baseDir "${project.buildDir}/it-reports"
-    }
-   
+    reports.junitXml.destination = file("${project.buildDir}/it-reports")
+    reports.html.destination = file("${project.buildDir}/it-reports")
+
 }
 
 check.dependsOn integTest
@@ -83,11 +81,10 @@ check.dependsOn integTest
 
 test {
     beforeTest { descriptor ->
-        logger.lifecycle("Running TU : " + descriptor)
+        logger.lifecycle("Running UT : " + descriptor)
     }
-    reporting {
-	baseDir "${project.buildDir}/tu-reports"
-    }   
+    reports.junitXml.destination = file("${project.buildDir}/ut-reports")
+    reports.html.destination = file("${project.buildDir}/ut-reports")
 }
 
 tasks.withType(Test) {

@@ -28,6 +28,7 @@ import java.util.stream.StreamSupport;
 /**
  * User: francois b.
  * Date: 15/06/14 06:48
+ * implementation of {@link Parser}
  */
 public class ParserImpl implements Parser {
 
@@ -40,8 +41,8 @@ public class ParserImpl implements Parser {
     private BufferedReader bufferedReader;
 
     /**
-     *
-     * @param pathFichier
+     * Constructor
+     * @param pathFichier : input file
      * @throws FileNotFoundException
      * @throws UnsupportedEncodingException
      */
@@ -57,7 +58,6 @@ public class ParserImpl implements Parser {
      * @return
      * @throws FileNotFoundException
      */
-
     public InputStream getInputStream(String filePath) throws FileNotFoundException {
         InputStream is = getClass().getResourceAsStream(filePath);
         if(is==null){
